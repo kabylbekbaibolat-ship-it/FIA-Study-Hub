@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * "Askan Light" is a licensed display face. Drop the font file into
+ * /public/fonts/askan-light.woff2 and this @font-face will pick it up.
+ * Until then, the Tailwind `font-askan` family falls back to an elegant
+ * serif (Cormorant Garamond, loaded in index.html) so the design still
+ * reads as premium out of the box.
+ */
+@font-face {
+  font-family: 'Askan Light';
+  src: url('/fonts/askan-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: #0a0a0a;
+}
+
+/* Give the serif fallback a lighter, more refined weight when it stands in
+   for Askan Light. */
+.font-askan {
+  font-family: 'Askan Light', 'Cormorant Garamond', serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
