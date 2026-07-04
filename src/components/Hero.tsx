@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Logo from './Logo'
 import { ArrowIcon, CloseIcon, InstagramIcon, MenuIcon } from './icons'
+import portrait from '../assets/baibo-portrait-bw.jpg'
 
 const EMAIL = 'kabylbekbaibolat@gmail.com'
 const MAILTO = `mailto:${EMAIL}`
@@ -28,7 +29,7 @@ export default function Hero() {
         keeping the same object-cover + object-position classes.
       */}
       <img
-        src="/media/baibo-portrait-bw.jpg"
+        src={portrait}
         alt="Portrait of Baibo"
         className="absolute inset-0 h-full w-full object-cover [object-position:80%_center] md:[object-position:right_center] lg:[object-position:center_center] animate-fade-in"
       />
