@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import Logo from './Logo'
-import { ArrowIcon, CloseIcon, MenuIcon } from './icons'
+import { ArrowIcon, CloseIcon, InstagramIcon, MenuIcon } from './icons'
+import portrait from '../assets/baibo-portrait-bw.jpg'
+
+const EMAIL = 'kabylbekbaibolat@gmail.com'
+const MAILTO = `mailto:${EMAIL}`
+const INSTAGRAM_HANDLE = '077.kbl'
+const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: MAILTO },
+  { label: 'Instagram', href: INSTAGRAM_URL, external: true },
 ]
 
 const FEATURE_PILLS = ['Entrepreneur', 'Developer', 'Problem Solver']
@@ -22,7 +29,7 @@ export default function Hero() {
         keeping the same object-cover + object-position classes.
       */}
       <img
-        src="/media/baibo-portrait-bw.jpg"
+        src={portrait}
         alt="Portrait of Baibo"
         className="absolute inset-0 h-full w-full object-cover [object-position:80%_center] md:[object-position:right_center] lg:[object-position:center_center] animate-fade-in"
       />
@@ -67,14 +74,25 @@ export default function Hero() {
             </button>
           </nav>
 
-          {/* Right CTA — desktop only */}
-          <a
-            href="#contact"
-            className="hidden items-center gap-2 rounded-full border border-white/15 bg-black/20 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/10 lg:inline-flex"
-          >
-            Work with Me
-            <ArrowIcon className="h-4 w-4" />
-          </a>
+          {/* Right — desktop only: Instagram + primary CTA */}
+          <div className="hidden items-center gap-3 lg:flex">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Instagram @${INSTAGRAM_HANDLE}`}
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-black/20 text-white/90 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/10 hover:text-white"
+            >
+              <InstagramIcon className="h-5 w-5" />
+            </a>
+            <a
+              href={MAILTO}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/10"
+            >
+              Work with Me
+              <ArrowIcon className="h-4 w-4" />
+            </a>
+          </div>
         </header>
 
         {/* Mobile / dropdown menu (glassmorphism) */}
@@ -86,6 +104,8 @@ export default function Hero() {
                   <a
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noreferrer' : undefined}
                     className="flex items-center justify-between rounded-xl px-4 py-3 text-base text-white/80 transition-colors hover:bg-white/10 hover:text-white"
                   >
                     {link.label}
@@ -106,31 +126,34 @@ export default function Hero() {
             </p>
 
             <h1 className="font-askan text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
-              Building ideas
+              Creating impact
               <br />
-              into reality.
+              through innovation.
             </h1>
 
             <p className="mt-5 max-w-md text-base font-light leading-relaxed text-white/70 sm:text-lg">
               I'm Baibo — an entrepreneur and developer turning bold ideas into
               products people actually use. I design, build, and ship with a
-              relentless focus on clarity and impact.
+              relentless focus on clarity, craft, and real-world impact.
             </p>
 
             {/* Call to action */}
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <a
-                href="#contact"
+                href={MAILTO}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-neutral-950 transition-all hover:bg-white/90"
               >
                 Contact Me
                 <ArrowIcon className="h-4 w-4" />
               </a>
               <a
-                href="#projects"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-black/20 px-7 py-3 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/10"
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-black/20 px-7 py-3 text-sm font-medium text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/10"
               >
-                View Projects
+                <InstagramIcon className="h-4 w-4" />
+                @{INSTAGRAM_HANDLE}
               </a>
             </div>
 
